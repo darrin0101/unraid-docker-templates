@@ -1,7 +1,7 @@
 
 # set program to use for connecting to remote server. It should support '-l' option for user name, '-p' for port 
 # number. Default is 'ssh -a -x'. You can set it to 'rsh', for example. 
-set sftp:connect-program "ssh -a -x -vvv -i /config/ssh_key"
+set sftp:connect-program "ssh -a -x -i /config/ssh_key"
 
 # when true, mirror will dereference symbolic links by default. You can override it by --no-dereference option. 
 # Default if false. 
