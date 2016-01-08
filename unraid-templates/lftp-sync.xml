@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Name>lftp-sync</Name>
+  <Overview>Installs lftp and a basic script to be customized for syncing content from a remote server.</Overview>
+  <Description>[a href="https://gist.github.com/gaubert/822090"]~/.lftp.rc parameters detailed[/a][br]
+    [a href="http://linux.die.net/man/1/lftp"]lftp(1) - Linux man page[/a][br]
+  </Description>
+  <Registry>https://registry.hub.docker.com/u/darrin0101/lftp-sync/</Registry>
+  <Repository>darrin0101/lftp-sync</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Environment/>
+  <Networking>
+    <Mode>host</Mode>
+    <Publish/>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/user/appdata/lftp-sync/</HostDir>
+      <ContainerDir>/config</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/TV Shows/</HostDir>
+      <ContainerDir>/media/TV Shows/</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+    <Volume>
+      <HostDir>/mnt/user/Movies/</HostDir>
+      <ContainerDir>/media/Movies/</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Version></Version>
+  <Banner></Banner>
+  <Icon></Icon>
+  <Beta>False</Beta>
+  <Category>Downloaders:</Category>
+</Container>

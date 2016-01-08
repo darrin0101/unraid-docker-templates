@@ -1,0 +1,45 @@
+
+# set program to use for connecting to remote server. It should support '-l' option for user name, '-p' for port 
+# number. Default is 'ssh -a -x'. You can set it to 'rsh', for example. 
+set sftp:connect-program "ssh -a -x -vvv -i /config/ssh_key"
+
+# when true, mirror will dereference symbolic links by default. You can override it by --no-dereference option. 
+# Default if false. 
+# set mirror:dereference (boolean)
+
+# specifies default exclusion pattern. You can override it by --include option. 
+# set mirror:exclude-regex (regex)
+
+# specifies default inclusion pattern. It is used just after mirror:exclude-regex is applied. It is never used if mirror:exclude-regex is empty.
+# set mirror:include-regex (regex) 
+
+# set mirror:order (list of patterns)
+# specifies order of file transfers. E.g. setting this to "*.sfv *.sum" makes mirror to transfer files matching 
+# *.sfv first, then ones matching *.sum and then all other files. To process directories after other files, add "*/" 
+# to end of pattern list. 
+
+# specifies number of parallel transfers mirror is allowed to start. Default is 1. You can override it with 
+# --parallel option. 
+set mirror:parallel-transfer-count 4
+
+# specifies -n option for pget command used to transfer every single file under mirror. Default is 1 which disables pget. 
+set mirror:use-pget-n 4
+
+# maximum number of concurrent connections to the same site. 0 means unlimited.
+# set net:connection-limit 2
+
+# if true, foreground connections have priority over background ones and can interrupt background transfers to 
+# complete a foreground operation. 
+# set net:connection-takeover yes
+
+# limit transfer rate on data connection. 0 means unlimited. You can specify two numbers separated by colon to 
+# limit download and upload rate separately. 
+# set net:limit-rate 0
+
+# Connect to our server
+open -u root,placeholder sftp://hostname/
+
+# Execute the provided sync script.
+# source /lftp/sync
+mirror -c --no-empty-dirs --Remove-source-files "/var/media/Movies/" "/media/Movies/"
+mirror -c --no-empty-dirs --Remove-source-files "/var/media/TV Shows/" "/media/TV Shows/"
